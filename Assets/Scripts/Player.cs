@@ -12,7 +12,12 @@ public class Player : MonoBehaviour {
     float inputVelocityX = Input.GetAxisRaw("Horizontal") * playerSpeed;
     float inputVelocityY = Input.GetAxisRaw("Vertical") * playerSpeed;
 
-    rb.velocity = new Vector2(inputVelocityX, inputVelocityY);
+    if (inputVelocityX != 0f) {
+      // rotate player
+      transform.Rotate(Vector3.forward * inputVelocityX);
+    }
+
+    rb.velocity = new Vector2(0f, inputVelocityY);
   }
 
   // Use this for initialization
