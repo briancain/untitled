@@ -3,27 +3,43 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-  private float playerSpeed;
   private Rigidbody2D rb;
 
   public Transform projectile;
+  public float playerSpeed;
+  public float rotationSpeed;
 
   void Move() {
-    float inputVelocityX = Input.GetAxisRaw("Horizontal") * playerSpeed;
-    float inputVelocityY = Input.GetAxisRaw("Vertical") * playerSpeed;
+    float inputX = Input.GetAxis("Horizontal");
+    float inputY = Input.GetAxis("Vertical");
+    //Debug.Log("Input X, Y: " + inputX + "," + inputY);
 
-    if (inputVelocityX != 0f) {
-      // rotate player
-      transform.Rotate(Vector3.forward * inputVelocityX);
-    }
+    Quaternion rotation = transform.rotation;
+    float eulerZ = rotation.eulerAngles.z;
+    eulerZ -= inputX * rotationSpeed * Time.deltaTime;
+    rotation = Quaternion.Euler(0f, 0f, eulerZ);
 
-    rb.velocity = new Vector2(0f, inputVelocityY);
+    transform.rotation = rotation;
+
+    Vector3 position = transform.position;
+    Vector3 velocity = new Vector3(0, inputY * playerSpeed * Time.deltaTime, 0f);
+    Debug.Log(inputY * playerSpeed * Time.deltaTime);
+    //Debug.Log("Velocity: " + velocity);
+    position += rotation * velocity;
+
+    position = RepositionPlayer(position);
+    transform.position = position;
+  }
+
+  Vector3 RepositionPlayer(Vector3 position) {
+    return position;
   }
 
   // Use this for initialization
   void Start () {
-    playerSpeed = 5;
     rb = gameObject.GetComponent<Rigidbody2D>();
+    playerSpeed = 5f;
+    rotationSpeed = 180f;
   }
 
   // Update is called once per frame
