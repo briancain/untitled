@@ -5,24 +5,22 @@ public class Projectile : MonoBehaviour {
 
   private Rigidbody2D rb;
   private BoxCollider2D boxCollider;
+  private float speed;
+
   private Transform playerTransform;
-  private Vector2 playerPosition;
 
   // Use this for initialization
   void Start () {
     rb = gameObject.GetComponent<Rigidbody2D>();
+    speed = 8f;
   }
 
   // Update is called once per frame
   void Update () {
-    Move();
-  }
-
-  void Move() {
-    if (rb.position.y <= 5f) {
-      rb.velocity = new Vector2(0f, 8f);
-    } else {
-      Destroy(gameObject);
-    }
+    // TODO: need checks to destroy game object if out of bounds
+    Vector3 position = transform.position;
+    Vector3 velocity = new Vector3(0f, speed * Time.deltaTime, 0f);
+    position += transform.rotation * velocity;
+    transform.position = position;
   }
 }

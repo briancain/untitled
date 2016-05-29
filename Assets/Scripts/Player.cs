@@ -12,7 +12,6 @@ public class Player : MonoBehaviour {
   void Move() {
     float inputX = Input.GetAxis("Horizontal");
     float inputY = Input.GetAxis("Vertical");
-    //Debug.Log("Input X, Y: " + inputX + "," + inputY);
 
     Quaternion rotation = transform.rotation;
     float eulerZ = rotation.eulerAngles.z;
@@ -23,8 +22,6 @@ public class Player : MonoBehaviour {
 
     Vector3 position = transform.position;
     Vector3 velocity = new Vector3(0, inputY * playerSpeed * Time.deltaTime, 0f);
-    Debug.Log(inputY * playerSpeed * Time.deltaTime);
-    //Debug.Log("Velocity: " + velocity);
     position += rotation * velocity;
 
     position = RepositionPlayer(position);
@@ -32,6 +29,7 @@ public class Player : MonoBehaviour {
   }
 
   Vector3 RepositionPlayer(Vector3 position) {
+    // TODO: Reposition player on other side of camera of out of bounds
     return position;
   }
 
@@ -53,8 +51,9 @@ public class Player : MonoBehaviour {
 
   void Attack() {
     //Debug.Log("Pew pew");
-    Vector3 projPosition = transform.position;
-    projPosition.y += 0.7f;
-    Instantiate(projectile, projPosition , Quaternion.identity);
+    Vector3 offset = new Vector3(0f, 0.8f, 0f);
+    Vector3 projPosition = transform.rotation * offset;
+
+    Instantiate(projectile, transform.position + projPosition , transform.rotation);
   }
 }
