@@ -211,48 +211,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 21280442, guid: 80d42130fd31a439c913c0f8260d90bc, type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 261446e8fa0f94270b873c2495e73ed3,
-        type: 3}
-    - target: {fileID: 156512, guid: 80d42130fd31a439c913c0f8260d90bc, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80d42130fd31a439c913c0f8260d90bc, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &762519708 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 156512, guid: 80d42130fd31a439c913c0f8260d90bc, type: 2}
-  m_PrefabInternal: {fileID: 762519707}
---- !u!50 &762519709
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 762519708}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &762519710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 762519708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1117e4e3d71c74c3487709f56d22646a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 480484, guid: 592b8dc58db6c44ddad9776014e045c7, type: 2}
