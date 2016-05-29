@@ -10,9 +10,19 @@ public class Projectile : MonoBehaviour {
 
   // Use this for initialization
   void Start () {
+    rb = gameObject.GetComponent<Rigidbody2D>();
   }
+
   // Update is called once per frame
   void Update () {
-    rb = gameObject.GetComponent<Rigidbody2D>();
+    Move();
+  }
+
+  void Move() {
+    if (rb.position.y <= 5f) {
+      rb.velocity = new Vector2(0f, 8f);
+    } else {
+      Destroy(gameObject);
+    }
   }
 }
