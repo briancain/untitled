@@ -4,6 +4,8 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
   private Rigidbody2D rb;
+  private float screenRatio;
+  private float widthOrthographic;
 
   public Transform projectile;
   public float playerSpeed;
@@ -29,7 +31,20 @@ public class Player : MonoBehaviour {
   }
 
   Vector3 RepositionPlayer(Vector3 position) {
-    // TODO: Reposition player on other side of camera of out of bounds
+    if (position.y > Camera.main.orthographicSize) {
+      position.y = Camera.main.orthographicSize;
+    }
+    if (position.y < -Camera.main.orthographicSize) {
+      position.y = -Camera.main.orthographicSize;
+    }
+
+    if (position.x > widthOrthographic) {
+      position.x = widthOrthographic;
+    }
+    if (position.x < -widthOrthographic) {
+      position.x = -widthOrthographic;
+    }
+
     return position;
   }
 
@@ -38,6 +53,10 @@ public class Player : MonoBehaviour {
     rb = gameObject.GetComponent<Rigidbody2D>();
     playerSpeed = 5f;
     rotationSpeed = 180f;
+
+    // Figure out screen bounds
+    screenRatio = (float)Screen.width / (float)Screen.height;
+    widthOrthographic = Camera.main.orthographicSize * screenRatio;
   }
 
   // Update is called once per frame
