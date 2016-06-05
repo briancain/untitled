@@ -44,6 +44,10 @@ public class Projectile : MonoBehaviour {
     }
   }
 
+  /*
+   *  Called by other game objects when
+   *  they collide with a projectile
+   */
   public void DestroyObject() {
     Debug.Log("Destroy Projectile");
     Destroy(gameObject);
