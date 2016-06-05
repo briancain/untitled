@@ -46,7 +46,6 @@ public class Enemy : MonoBehaviour {
   }
 
   void DestroyEnemy() {
-    Debug.Log("Dead");
     Destroy(gameObject);
   }
 

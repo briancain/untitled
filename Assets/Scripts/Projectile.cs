@@ -49,7 +49,6 @@ public class Projectile : MonoBehaviour {
    *  they collide with a projectile
    */
   public void DestroyObject() {
-    Debug.Log("Destroy Projectile");
     Destroy(gameObject);
   }
 }
